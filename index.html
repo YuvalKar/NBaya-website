@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N-Baya | Building the Metaverse</title>
+    <meta name="description" content="OK Boomer, Build the Metaverse. Follow Yuval's journey learning UEFN and Verse.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter for UI, JetBrains Mono for Code vibes -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons (Lucide) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        unreal: '#0e1128',
+                        accent: '#3b82f6', // Unreal Blue-ish
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #0f172a; /* Slate 900 */
+            color: #e2e8f0; /* Slate 200 */
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #60a5fa, #34d399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .code-block {
+            background-image: radial-gradient(#334155 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-6 selection:bg-blue-500 selection:text-white">
+
+    <div class="max-w-2xl w-full space-y-12">
+        
+        <!-- Header / Logo Area -->
+        <header class="text-center space-y-4">
+            <div class="inline-block px-3 py-1 border border-slate-700 rounded-full bg-slate-800/50 backdrop-blur-sm">
+                <span class="text-xs font-mono text-emerald-400 tracking-wider uppercase">System.Print("Hello World")</span>
+            </div>
+            <h1 class="text-6xl md:text-7xl font-extrabold tracking-tighter">
+                N-BAYA
+            </h1>
+            <p class="text-xl md:text-2xl font-mono text-slate-400 font-light">
+                <span class="text-blue-400">&lt;</span>Code<span class="text-blue-400">/&gt;</span> The Metaverse
+            </p>
+        </header>
+
+        <!-- Hero Section -->
+        <main class="space-y-8">
+            <div class="text-center">
+                <h2 class="text-3xl md:text-4xl font-bold leading-tight">
+                    "OK Boomer, <br class="md:hidden" /> <span class="gradient-text">Build the Metaverse.</span>"
+                </h2>
+            </div>
+
+            <!-- Bio Section -->
+            <div class="prose prose-invert prose-lg mx-auto text-slate-300 leading-relaxed">
+                <p>
+                    Hi, I’m <span class="text-white font-semibold">Yuval</span>. I was born in the 60s. I’m a husband, a father, and a grandfather.
+                </p>
+                <p>
+                    I have over <span class="font-mono text-emerald-400">40 years</span> of programming experience, but zero experience playing Fortnite. I don't know the dances, and I definitely don't have the skins.
+                </p>
+                <p>
+                    So naturally, I decided to invest in a high-end PC and learn <strong>UEFN</strong> (Unreal Editor for Fortnite) from scratch.
+                </p>
+            </div>
+
+            <!-- The Mission Box -->
+            <div class="code-block bg-slate-800/50 border border-slate-700 rounded-xl p-6 md:p-8 shadow-2xl relative overflow-hidden group hover:border-blue-500/50 transition-colors duration-300">
+                <div class="absolute top-0 right-0 p-2 opacity-10 group-hover:opacity-20 transition-opacity">
+                    <i data-lucide="cpu" class="w-24 h-24"></i>
+                </div>
+                
+                <h3 class="text-lg font-mono font-bold text-blue-400 mb-4 flex items-center gap-2">
+                    <i data-lucide="terminal" class="w-5 h-5"></i> MISSION_LOG
+                </h3>
+                
+                <ul class="space-y-4 text-sm md:text-base">
+                    <li class="flex gap-3">
+                        <span class="text-emerald-400 font-bold shrink-0">>></span>
+                        <span>
+                            <strong class="text-white">Objective:</strong> Engineer an infinite, procedurally generated city using the Verse programming language.
+                        </span>
+                    </li>
+                    <li class="flex gap-3">
+                        <span class="text-red-400 font-bold shrink-0">>></span>
+                        <span>
+                            <strong class="text-white">Challenge:</strong> Doing it all parallel to my full-time job and family life, simply because I'm stubborn.
+                        </span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="text-center pt-4">
+                <p class="text-slate-400 italic">
+                    Join N-Baya to see if an "Old School" coder can teach the new generation a trick or two.
+                </p>
+                <p class="text-sm font-mono text-emerald-400 mt-2 animate-pulse">
+                    New DevLog planned every week.
+                </p>
+            </div>
+
+            <!-- Links / CTA -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                <!-- YouTube Button -->
+                <a href="https://www.youtube.com/@N_Baya" target="_blank" class="flex items-center justify-center gap-3 bg-red-600 hover:bg-red-700 text-white py-4 px-6 rounded-lg font-bold transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-red-900/20 group">
+                    <i data-lucide="youtube" class="w-6 h-6 group-hover:scale-110 transition-transform"></i>
+                    <span>Watch on YouTube</span>
+                </a>
+
+                <!-- Discord Button -->
+                <a href="https://discord.gg/2x6RKnZ9vV" target="_blank" class="flex items-center justify-center gap-3 bg-[#5865F2] hover:bg-[#4752C4] text-white py-4 px-6 rounded-lg font-bold transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-indigo-900/20 group">
+                    <i data-lucide="message-circle" class="w-6 h-6 group-hover:scale-110 transition-transform"></i>
+                    <span>Join Discord</span>
+                </a>
+            </div>
+            
+             <!-- Additional Link Placeholder -->
+             <div class="text-center">
+                 <a href="mailto:yuval@nbaya.com" class="text-sm text-slate-500 hover:text-slate-300 transition-colors">Get in touch</a>
+             </div>
+
+        </main>
+
+        <footer class="text-center text-slate-600 text-sm pt-12 border-t border-slate-800">
+            <p>&copy; 2025 N-Baya. All systems operational.</p>
+        </footer>
+
+    </div>
+
+    <!-- Initialize Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
