@@ -1,0 +1,45 @@
+name: Update Site Content (Discord + YouTube)
+
+on:
+  schedule:
+    - cron: '0 */6 * * *' # Run every 6 hours
+  workflow_dispatch:      # Manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  update-content:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      # שלב 1: דיסקורד
+      - name: Fetch Discord
+        env:
+          DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+          CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
+        run: python fetch_discord.py
+
+      # שלב 2: יוטיוב (חדש!)
+      - name: Fetch YouTube
+        env:
+          YOUTUBE_CHANNEL_ID: ${{ secrets.YOUTUBE_CHANNEL_ID }}
+        run: python fetch_youtube.py
+
+      # שלב 3: שמירת השינויים
+      - name: Commit and Push
+        run: |
+          git config --global user.name 'N-Baya Bot'
+          git config --global user.email 'bot@nbaya.com'
+          git add discord_update.json youtube_update.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update site content [skip ci]" && git push)
