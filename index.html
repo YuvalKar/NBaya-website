@@ -9,7 +9,7 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts: Inter for UI, JetBrains Mono for Code vibes -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     
     <!-- Icons (Lucide) -->
@@ -25,7 +25,7 @@
                     },
                     colors: {
                         unreal: '#0e1128',
-                        accent: '#3b82f6', // Unreal Blue-ish
+                        accent: '#3b82f6',
                     }
                 }
             }
@@ -58,7 +58,7 @@
                 <span class="text-xs font-mono text-emerald-400 tracking-wider uppercase">System.Print("Hello World")</span>
             </div>
             <h1 class="text-6xl md:text-7xl font-extrabold tracking-tighter">
-                N-Baya
+                N-BAYA
             </h1>
             <p class="text-xl md:text-2xl font-mono text-slate-400 font-light">
                 <span class="text-blue-400">&lt;</span>Code<span class="text-blue-400">/&gt;</span> The Metaverse
@@ -78,7 +78,7 @@
                 
                 <!-- Profile Picture -->
                 <div class="shrink-0 relative group">
-                    <!-- Glow effect behind image -->
+                    <!-- Glow effect -->
                     <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-emerald-400 rounded-full blur opacity-50 group-hover:opacity-100 transition duration-500"></div>
                     <img src="Profile_Pict.png" alt="Yuval Karmi" class="relative w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-slate-900 object-cover shadow-2xl transform transition hover:scale-105">
                 </div>
@@ -90,7 +90,7 @@
                         I have zero experience playing Fortnite, so naturally, I am building a huge city in Fortnite, using Verse code.
                     </p>
                     <p class="mt-2 text-base">
-                        <span class="text-red-400 font-bold uppercase text-xs tracking-wider">The Challenge :=</span> 
+                        <span class="text-red-400 font-bold uppercase text-xs tracking-wider">The Challenge //</span> 
                         Doing it all parallel to my full-time job and family life, simply because I'm stubborn.
                     </p>
                 </div>
@@ -111,12 +111,13 @@
                 </h3>
                 
                 <!-- Dynamic Content Container -->
-                <div id="discord-update-container" class="space-y-3 font-mono text-sm md:text-base">
-                    <!-- Javascript will inject content here -->
-                    <div class="animate-pulse flex space-x-4">
-                        <div class="flex-1 space-y-4 py-1">
-                            <div class="h-4 bg-slate-700 rounded w-3/4"></div>
-                            <div class="h-4 bg-slate-700 rounded"></div>
+                <div id="discord-update-container" class="space-y-3 font-mono text-sm md:text-base min-h-[80px] flex items-center">
+                    <!-- Loading State -->
+                    <div class="animate-pulse flex space-x-4 w-full">
+                        <div class="flex-1 space-y-2 py-1">
+                            <div class="h-2 bg-slate-700 rounded w-1/4 mb-2"></div>
+                            <div class="h-2 bg-slate-700 rounded w-3/4"></div>
+                            <div class="h-2 bg-slate-700 rounded w-1/2"></div>
                         </div>
                     </div>
                 </div>
@@ -130,20 +131,17 @@
 
             <!-- Links / CTA -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 max-w-2xl mx-auto">
-                <!-- YouTube Button -->
                 <a href="https://www.youtube.com/@N_Baya" target="_blank" class="flex items-center justify-center gap-3 bg-red-600 hover:bg-red-700 text-white py-4 px-6 rounded-lg font-bold transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-red-900/20 group">
                     <i data-lucide="youtube" class="w-6 h-6 group-hover:scale-110 transition-transform"></i>
                     <span>Watch on YouTube</span>
                 </a>
 
-                <!-- Discord Button -->
                 <a href="https://discord.gg/2x6RKnZ9vV" target="_blank" class="flex items-center justify-center gap-3 bg-[#5865F2] hover:bg-[#4752C4] text-white py-4 px-6 rounded-lg font-bold transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-indigo-900/20 group">
                     <i data-lucide="message-circle" class="w-6 h-6 group-hover:scale-110 transition-transform"></i>
                     <span>Join Discord</span>
                 </a>
             </div>
             
-             <!-- Additional Link Placeholder -->
              <div class="text-center">
                  <a href="mailto:yuval@nbaya.com" class="text-sm text-slate-500 hover:text-slate-300 transition-colors">Get in touch</a>
              </div>
@@ -161,51 +159,66 @@
         lucide.createIcons();
     </script>
 
-    <!-- Script to simulate fetching Discord Updates -->
+    <!-- REAL LOGIC: Fetch updates from JSON -->
     <script>
-        // In a real production environment, you would fetch this from a backend proxy
-        // that queries the Discord API.
-        
-        // This is a simulation of the data structure.
-        const mockDiscordUpdate = {
-            date: "2025-11-26",
-            content: "Seems I'm unable to load from Discord... working on it!",
-            link: "https://discord.gg/2x6RKnZ9vV" // Direct link to message if available
-        };
+        const DISCORD_INVITE = "https://discord.gg/2x6RKnZ9vV";
+
+        async function fetchUpdates() {
+            try {
+                // Fetch the JSON file generated by GitHub Actions
+                // Adding timestamp to prevent caching
+                const response = await fetch('discord_update.json?t=' + new Date().getTime());
+                
+                if (!response.ok) {
+                    throw new Error('Update file not found');
+                }
+
+                const data = await response.json();
+                renderUpdate(data);
+
+            } catch (error) {
+                console.log("Could not fetch updates, using fallback.", error);
+                // Fallback content
+                renderUpdate({
+                    date: new Date().toISOString(),
+                    content: "System Initialized. Waiting for the first transmission from the Metaverse...",
+                    link: DISCORD_INVITE
+                });
+            }
+        }
 
         function renderUpdate(update) {
             const container = document.getElementById('discord-update-container');
             
-            // Format date slightly nicer
             const dateObj = new Date(update.date);
             const dateString = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            
+            let cleanContent = update.content; 
+            if(cleanContent.length > 200) {
+                cleanContent = cleanContent.substring(0, 200) + "...";
+            }
 
             const html = `
-                <div class="flex flex-col gap-2">
+                <div class="flex flex-col gap-2 w-full animate-in fade-in duration-700">
                     <div class="flex items-center gap-2 text-xs text-slate-400 uppercase tracking-widest">
                         <span class="text-emerald-400">>></span>
-                        ${dateString}
+                        ${dateString} <span class="text-slate-600">|</span> <span class="text-blue-400">@${update.author || 'Yuval'}</span>
                     </div>
-                    <p class="text-slate-200 leading-relaxed">
-                        ${update.content}
+                    <p class="text-slate-200 leading-relaxed break-words font-light">
+                        "${cleanContent}"
                     </p>
-                    ${update.link ? `
-                    <a href="${update.link}" target="_blank" class="inline-flex items-center text-xs text-blue-400 hover:text-blue-300 mt-1 transition-colors">
+                    <a href="${DISCORD_INVITE}" target="_blank" class="inline-flex items-center text-xs text-blue-400 hover:text-blue-300 mt-1 transition-colors self-start">
                         View on Discord <i data-lucide="external-link" class="w-3 h-3 ml-1"></i>
                     </a>
-                    ` : ''}
                 </div>
             `;
             
             container.innerHTML = html;
-            lucide.createIcons(); // Re-init icons for the new content
+            lucide.createIcons();
         }
 
-        // Simulate network delay for effect
-        setTimeout(() => {
-            renderUpdate(mockDiscordUpdate);
-        }, 800);
-
+        // Run on load
+        fetchUpdates();
     </script>
 </body>
 </html>
