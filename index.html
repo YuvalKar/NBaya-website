@@ -50,7 +50,7 @@
 </head>
 <body class="min-h-screen flex flex-col items-center justify-center p-6 selection:bg-blue-500 selection:text-white">
 
-    <div class="max-w-2xl w-full space-y-12">
+    <div class="max-w-3xl w-full space-y-12">
         
         <!-- Header / Logo Area -->
         <header class="text-center space-y-4">
@@ -58,7 +58,7 @@
                 <span class="text-xs font-mono text-emerald-400 tracking-wider uppercase">System.Print("Hello World")</span>
             </div>
             <h1 class="text-6xl md:text-7xl font-extrabold tracking-tighter">
-                N-BAYA
+                N-Baya
             </h1>
             <p class="text-xl md:text-2xl font-mono text-slate-400 font-light">
                 <span class="text-blue-400">&lt;</span>Code<span class="text-blue-400">/&gt;</span> The Metaverse
@@ -66,63 +66,70 @@
         </header>
 
         <!-- Hero Section -->
-        <main class="space-y-8">
+        <main class="space-y-10">
             <div class="text-center">
                 <h2 class="text-3xl md:text-4xl font-bold leading-tight">
                     "OK Boomer, <br class="md:hidden" /> <span class="gradient-text">Build the Metaverse.</span>"
                 </h2>
             </div>
 
-            <!-- Bio Section -->
-            <div class="prose prose-invert prose-lg mx-auto text-slate-300 leading-relaxed">
-                <p>
-                    Hi, I’m <span class="text-white font-semibold">Yuval</span>. I was born in the 60s. I’m a husband, a father, and a grandfather.
-                </p>
-                <p>
-                    I have over <span class="font-mono text-emerald-400">40 years</span> of programming experience, but zero experience playing Fortnite. I don't know the dances, and I definitely don't have the skins.
-                </p>
-                <p>
-                    So naturally, I decided to invest in a high-end PC and learn <strong>UEFN</strong> (Unreal Editor for Fortnite) from scratch.
-                </p>
+            <!-- Profile & Bio Section -->
+            <div class="flex flex-col md:flex-row items-center gap-8 justify-center">
+                
+                <!-- Profile Picture -->
+                <div class="shrink-0 relative group">
+                    <!-- Glow effect behind image -->
+                    <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-emerald-400 rounded-full blur opacity-50 group-hover:opacity-100 transition duration-500"></div>
+                    <img src="Profile_Pict.png" alt="Yuval Karmi" class="relative w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-slate-900 object-cover shadow-2xl transform transition hover:scale-105">
+                </div>
+
+                <!-- Short Bio Text -->
+                <div class="prose prose-invert prose-lg text-slate-300 leading-relaxed text-center md:text-left max-w-lg">
+                    <p class="mb-2">
+                        Hi, I’m <span class="text-white font-semibold">Yuval</span>. I was born in the 60s. 
+                        I have zero experience playing Fortnite, so naturally, I am building a huge city in Fortnite, using Verse code.
+                    </p>
+                    <p class="mt-2 text-base">
+                        <span class="text-red-400 font-bold uppercase text-xs tracking-wider">The Challenge :=</span> 
+                        Doing it all parallel to my full-time job and family life, simply because I'm stubborn.
+                    </p>
+                </div>
             </div>
 
-            <!-- The Mission Box -->
+            <!-- The Mission Box (Discord Updates) -->
             <div class="code-block bg-slate-800/50 border border-slate-700 rounded-xl p-6 md:p-8 shadow-2xl relative overflow-hidden group hover:border-blue-500/50 transition-colors duration-300">
                 <div class="absolute top-0 right-0 p-2 opacity-10 group-hover:opacity-20 transition-opacity">
-                    <i data-lucide="cpu" class="w-24 h-24"></i>
+                    <i data-lucide="radio" class="w-24 h-24"></i>
                 </div>
                 
                 <h3 class="text-lg font-mono font-bold text-blue-400 mb-4 flex items-center gap-2">
-                    <i data-lucide="terminal" class="w-5 h-5"></i> MISSION_LOG
+                    <i data-lucide="terminal" class="w-5 h-5"></i> MISSION_LOG / UPDATES
+                    <span class="relative flex h-3 w-3 ml-auto">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                    </span>
                 </h3>
                 
-                <ul class="space-y-4 text-sm md:text-base">
-                    <li class="flex gap-3">
-                        <span class="text-emerald-400 font-bold shrink-0">>></span>
-                        <span>
-                            <strong class="text-white">Objective:</strong> Engineer an infinite, procedurally generated city using the Verse programming language.
-                        </span>
-                    </li>
-                    <li class="flex gap-3">
-                        <span class="text-red-400 font-bold shrink-0">>></span>
-                        <span>
-                            <strong class="text-white">Challenge:</strong> Doing it all parallel to my full-time job and family life, simply because I'm stubborn.
-                        </span>
-                    </li>
-                </ul>
+                <!-- Dynamic Content Container -->
+                <div id="discord-update-container" class="space-y-3 font-mono text-sm md:text-base">
+                    <!-- Javascript will inject content here -->
+                    <div class="animate-pulse flex space-x-4">
+                        <div class="flex-1 space-y-4 py-1">
+                            <div class="h-4 bg-slate-700 rounded w-3/4"></div>
+                            <div class="h-4 bg-slate-700 rounded"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="text-center pt-4">
+            <div class="text-center pt-2">
                 <p class="text-slate-400 italic">
                     Join N-Baya to see if an "Old School" coder can teach the new generation a trick or two.
-                </p>
-                <p class="text-sm font-mono text-emerald-400 mt-2 animate-pulse">
-                    New DevLog planned every week.
                 </p>
             </div>
 
             <!-- Links / CTA -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 max-w-2xl mx-auto">
                 <!-- YouTube Button -->
                 <a href="https://www.youtube.com/@N_Baya" target="_blank" class="flex items-center justify-center gap-3 bg-red-600 hover:bg-red-700 text-white py-4 px-6 rounded-lg font-bold transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-red-900/20 group">
                     <i data-lucide="youtube" class="w-6 h-6 group-hover:scale-110 transition-transform"></i>
@@ -143,7 +150,7 @@
 
         </main>
 
-        <footer class="text-center text-slate-600 text-sm pt-12 border-t border-slate-800">
+        <footer class="text-center text-slate-600 text-sm pt-8 border-t border-slate-800">
             <p>&copy; 2025 N-Baya. All systems operational.</p>
         </footer>
 
@@ -152,6 +159,53 @@
     <!-- Initialize Icons -->
     <script>
         lucide.createIcons();
+    </script>
+
+    <!-- Script to simulate fetching Discord Updates -->
+    <script>
+        // In a real production environment, you would fetch this from a backend proxy
+        // that queries the Discord API.
+        
+        // This is a simulation of the data structure.
+        const mockDiscordUpdate = {
+            date: "2025-11-26",
+            content: "Seems I'm unable to load from Discord... working on it!",
+            link: "https://discord.gg/2x6RKnZ9vV" // Direct link to message if available
+        };
+
+        function renderUpdate(update) {
+            const container = document.getElementById('discord-update-container');
+            
+            // Format date slightly nicer
+            const dateObj = new Date(update.date);
+            const dateString = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+            const html = `
+                <div class="flex flex-col gap-2">
+                    <div class="flex items-center gap-2 text-xs text-slate-400 uppercase tracking-widest">
+                        <span class="text-emerald-400">>></span>
+                        ${dateString}
+                    </div>
+                    <p class="text-slate-200 leading-relaxed">
+                        ${update.content}
+                    </p>
+                    ${update.link ? `
+                    <a href="${update.link}" target="_blank" class="inline-flex items-center text-xs text-blue-400 hover:text-blue-300 mt-1 transition-colors">
+                        View on Discord <i data-lucide="external-link" class="w-3 h-3 ml-1"></i>
+                    </a>
+                    ` : ''}
+                </div>
+            `;
+            
+            container.innerHTML = html;
+            lucide.createIcons(); // Re-init icons for the new content
+        }
+
+        // Simulate network delay for effect
+        setTimeout(() => {
+            renderUpdate(mockDiscordUpdate);
+        }, 800);
+
     </script>
 </body>
 </html>
