@@ -1,6 +1,6 @@
 {
-  "content": "First game design for system familiarization: The setup includes: a player, a gun with 3 shots, and a 1 cubic meter cube. The player's goal: to hit the cube. If the cube is hit - Win. If ammo runs out - Lose.",
-  "date": "2025-11-30T14:57:42.274000+00:00",
+  "content": "**🛠️ Quick Site Patch**\n\nI did some work on the website's frontend today.\nMainly focused on optimization: I removed the laggy video embed and built a custom thumbnail card instead. It creates a much smoother experience when browsing.",
+  "date": "2025-12-01T16:40:02.045000+00:00",
   "author": "yuvalk3162",
-  "id": "1444703947033022474"
+  "id": "1445092086964682792"
 }
