@@ -135,27 +135,32 @@
             </div>
 
             <!-- *** NEW: YouTube Latest Video Section *** -->
-            <div id="youtube-section" class="hidden animate-in fade-in slide-in-from-bottom-4 duration-1000">
-                <div class="relative group">
-                    <div class="absolute -inset-1 bg-gradient-to-r from-red-600 to-orange-500 rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-500"></div>
+			<div id="youtube-section" class="hidden animate-in fade-in slide-in-from-bottom-4 duration-1000">
+                <a id="youtube-link" href="" target="_blank" class="block relative group cursor-pointer">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-red-600 to-orange-500 rounded-xl blur opacity-25 group-hover:opacity-60 transition duration-500"></div>
+                    
                     <div class="relative bg-slate-900 border border-slate-700 rounded-xl overflow-hidden shadow-2xl">
                         
-                        <!-- Header -->
-                        <div class="bg-slate-800/80 px-4 py-2 flex items-center justify-between border-b border-slate-700">
+                        <div class="bg-slate-800/80 px-4 py-2 flex items-center justify-between border-b border-slate-700 z-10 relative">
                             <span class="text-xs font-mono font-bold text-red-400 flex items-center gap-2">
                                 <i data-lucide="play-circle" class="w-4 h-4"></i> LATEST TRANSMISSION
                             </span>
-                            <span class="text-[10px] text-slate-500 uppercase tracking-widest font-mono">YouTube Feed</span>
+                            <span class="text-[10px] text-slate-500 uppercase tracking-widest font-mono group-hover:text-white transition-colors">Click to Watch</span>
                         </div>
 
-                        <!-- Video Container -->
-                        <div class="aspect-video w-full bg-black">
-                             <iframe id="youtube-embed" class="w-full h-full" src="" title="Latest Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <div class="aspect-video w-full bg-black relative overflow-hidden">
+                             <img id="youtube-thumb" src="" alt="Latest Video" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition duration-500 ease-out">
+                             
+                             <div class="absolute inset-0 flex items-center justify-center">
+                                 <div class="w-16 h-16 bg-red-600/90 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:bg-red-600 transition duration-300">
+                                     <i data-lucide="play" class="w-8 h-8 text-white fill-current ml-1"></i>
+                                 </div>
+                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
-
+			
             <div class="text-center pt-2">
                 <p class="text-slate-400 italic">
                     Join N-Baya to see if an "Old School" coder can teach the new generation a trick or two.
@@ -251,21 +256,29 @@
             lucide.createIcons();
         }
 
-        // 2. Fetch YouTube Updates (NEW)
+		// 2. Fetch YouTube Updates (Modified for Direct Link)
         async function fetchYouTube() {
             try {
+                // Fetch the JSON containing just the videoId
                 const response = await fetch('youtube_update.json?t=' + Date.now());
                 if (!response.ok) throw new Error('No youtube file');
                 const data = await response.json();
 
                 if (data.videoId) {
-                    const embedUrl = `https://www.youtube.com/embed/${data.videoId}`;
-                    document.getElementById('youtube-embed').src = embedUrl;
-                    // Reveal the section (it is hidden by default)
+                    // Generate Link to Video
+                    const watchUrl = `https://www.youtube.com/watch?v=${data.videoId}`;
+                    document.getElementById('youtube-link').href = watchUrl;
+
+                    // Generate Thumbnail URL (High Quality)
+                    // Format: https://img.youtube.com/vi/[VIDEO_ID]/maxresdefault.jpg
+                    const thumbUrl = `https://img.youtube.com/vi/${data.videoId}/maxresdefault.jpg`;
+                    document.getElementById('youtube-thumb').src = thumbUrl;
+
+                    // Reveal the section
                     document.getElementById('youtube-section').classList.remove('hidden');
                 }
             } catch (e) {
-                console.log("No YouTube data found yet.");
+                console.log("No YouTube data found yet or fetch error.", e);
             }
         }
 
