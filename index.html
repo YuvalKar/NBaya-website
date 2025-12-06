@@ -259,32 +259,42 @@
             lucide.createIcons();
         }
 
-		// 2. Fetch YouTube Updates (Modified for Direct Link)
-        async function fetchYouTube() {
-            try {
-                // Fetch the JSON containing just the videoId
-                const response = await fetch('youtube_update.json?t=' + Date.now());
-                if (!response.ok) throw new Error('No youtube file');
-                const data = await response.json();
+		// 2. Fetch YouTube Updates (Modified with Thumbnail Fallback)
+		async function fetchYouTube() {
+			try {
+				const response = await fetch('youtube_update.json?t=' + Date.now());
+				if (!response.ok) throw new Error('No youtube file');
+				const data = await response.json();
 
-                if (data.videoId) {
-                    // Generate Link to Video
-                    const watchUrl = `https://www.youtube.com/watch?v=${data.videoId}`;
-                    document.getElementById('youtube-link').href = watchUrl;
+				if (data.videoId) {
+					// Generate Link to Video
+					const watchUrl = `https://www.youtube.com/watch?v=${data.videoId}`;
+					document.getElementById('youtube-link').href = watchUrl;
+					
+					const youtubeImg = document.getElementById('youtube-thumb');
+					const maxRes = `https://img.youtube.com/vi/${data.videoId}/maxresdefault.jpg`;
+					const highRes = `https://img.youtube.com/vi/${data.videoId}/hqdefault.jpg`;
 
-                    // Generate Thumbnail URL (High Quality)
-                    // Format: https://img.youtube.com/vi/[VIDEO_ID]/maxresdefault.jpg
-                    const thumbUrl = `https://img.youtube.com/vi/${data.videoId}/maxresdefault.jpg`;
-                    document.getElementById('youtube-thumb').src = thumbUrl;
+					// try to load max res
+					youtubeImg.src = maxRes;
 
-                    // Reveal the section
-                    document.getElementById('youtube-section').classList.remove('hidden');
-                }
-            } catch (e) {
-                console.log("No YouTube data found yet or fetch error.", e);
-            }
-        }
+					// error on load (404)
+					youtubeImg.onerror = function() {
+						console.log("MaxRes failed, switching to HQ");
+						this.src = highRes;
+						// just making sure no endless loop
+						this.onerror = null; 
+					};
 
+					// Reveal the section
+					document.getElementById('youtube-section').classList.remove('hidden');
+				}
+			} catch (e) {
+				console.log("No YouTube data found yet or fetch error.", e);
+			}
+		}
+		
+		
         // Run both
         fetchDiscordUpdates();
         fetchYouTube();
