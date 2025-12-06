@@ -274,17 +274,25 @@
 					const youtubeImg = document.getElementById('youtube-thumb');
 					const maxRes = `https://img.youtube.com/vi/${data.videoId}/maxresdefault.jpg`;
 					const highRes = `https://img.youtube.com/vi/${data.videoId}/hqdefault.jpg`;
+					
+					var selectedRes = maxRes;
 
 					// error on load (404)
 					youtubeImg.onerror = function() {
 						console.log("MaxRes failed, switching to HQ");
 						this.src = highRes;
+						selectedRes = highRes;
 						// just making sure no endless loop
 						this.onerror = null; 
 					};
 
-					// try to load max res
-					youtubeImg.src = maxRes;
+					// try to load...
+					try {
+						youtubeImg.src = selectedRes;
+					} catch (e) {
+						console.log("failed on image maxRes", e);
+						youtubeImg.src = highRes;
+					}
 					
 					// Reveal the section
 					document.getElementById('youtube-section').classList.remove('hidden');
