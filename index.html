@@ -275,9 +275,6 @@
 					const maxRes = `https://img.youtube.com/vi/${data.videoId}/maxresdefault.jpg`;
 					const highRes = `https://img.youtube.com/vi/${data.videoId}/hqdefault.jpg`;
 
-					// try to load max res
-					youtubeImg.src = maxRes;
-
 					// error on load (404)
 					youtubeImg.onerror = function() {
 						console.log("MaxRes failed, switching to HQ");
@@ -286,6 +283,9 @@
 						this.onerror = null; 
 					};
 
+					// try to load max res
+					youtubeImg.src = maxRes;
+					
 					// Reveal the section
 					document.getElementById('youtube-section').classList.remove('hidden');
 				}
