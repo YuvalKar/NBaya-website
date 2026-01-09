@@ -1,6 +1,6 @@
 {
-  "content": "Sketch to HUD: Building Fortnite UI with Gemini AI\n\nI am deep in the learning process with Fortnite Creative and Verse, and I needed a custom HUD. Instead of writing the UI definitions line by line, I opened Paint, sketched a rough diagram, and asked Google Gemini to handle the rest... (-:\nIt is not perfect. The positioning needs work and the graphics are temporary, but the code actually runs. The health bar updates and the text reacts to the game state.\nI recorded the process because I think it is fascinating the way you can learn and use AI now. \nI am thinking about releasing this as an open-source project. If you think it seems useful drop me a note.\n\nhttps://youtu.be/iA7XCOOxNqU",
-  "date": "2026-01-08T03:59:58.400000+00:00",
+  "content": "Next week is gonna be tricky. Short hours, too many tasks",
+  "date": "2026-01-09T09:05:21.360000+00:00",
   "author": "yuvalk3162",
-  "id": "1458671550306844852"
+  "id": "1459110790236868608"
 }
